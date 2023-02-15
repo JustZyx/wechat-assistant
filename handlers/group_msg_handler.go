@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/869413421/wechatbot/gtp"
+	"github.com/JustZyx/wechat-assistant/gtp"
 	"github.com/eatmoreapple/openwechat"
 	"log"
 	"strings"
@@ -44,7 +44,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	reply, err := gtp.Completions(requestText)
 	if err != nil {
 		log.Printf("gtp request error: %v \n", err)
-		msg.ReplyText("机器人神了，我一会发现了就去修。")
+		msg.ReplyText("对不起，我累了")
 		return err
 	}
 	if reply == "" {

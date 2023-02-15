@@ -1,4 +1,4 @@
-module github.com/869413421/wechatbot
+module github.com/JustZyx/wechat-assistant
 
 go 1.16
 

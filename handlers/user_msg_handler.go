@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/869413421/wechatbot/gtp"
+	"github.com/JustZyx/wechat-assistant/gtp"
 	"github.com/eatmoreapple/openwechat"
 	"log"
 	"strings"
@@ -15,9 +15,9 @@ type UserMessageHandler struct {
 
 // handle 处理消息
 func (g *UserMessageHandler) handle(msg *openwechat.Message) error {
-	if msg.IsText() {
-		return g.ReplyText(msg)
-	}
+	//if msg.IsText() {
+	//	return g.ReplyText(msg)
+	//}
 	return nil
 }
 
