@@ -31,7 +31,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	// 接收群消息
 	sender, err := msg.Sender()
 	group := openwechat.Group{sender}
-	log.Printf("Received Group %v Text Msg : %v", group.NickName, msg.Content)
+	log.Printf("Received Group %v Text Msg : %v ChatRoomId: %v", group.NickName, msg.Content, group.ChatRoomId)
 
 	// 不是@的不处理
 	if !msg.IsAt() {
