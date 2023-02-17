@@ -15,9 +15,9 @@ type UserMessageHandler struct {
 
 // handle 处理消息
 func (g *UserMessageHandler) handle(msg *openwechat.Message) error {
-	//if msg.IsText() {
-	//	return g.ReplyText(msg)
-	//}
+	if msg.IsText() {
+		return g.ReplyText(msg)
+	}
 	return nil
 }
 
