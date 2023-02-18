@@ -48,6 +48,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 			m[group.NickName]++
 			return nil
 		}
+		return nil
 	}
 
 	// 不是@的不处理
