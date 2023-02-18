@@ -45,6 +45,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 		}
 		if m[group.NickName] == 1 {
 			msg.ReplyText("再见啦👋")
+			m[group.NickName]++
 			return nil
 		}
 	}
