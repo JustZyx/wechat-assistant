@@ -5,6 +5,7 @@ import (
 	"github.com/eatmoreapple/openwechat"
 	"log"
 	"strings"
+	"time"
 )
 
 var _ MessageHandlerInterface = (*GroupMessageHandler)(nil)
@@ -27,11 +28,26 @@ func NewGroupMessageHandler() MessageHandlerInterface {
 }
 
 // ReplyText 发送文本消息到群
+var m = make(map[string]int)
+
 func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	// 接收群消息
 	sender, err := msg.Sender()
 	group := openwechat.Group{sender}
 	log.Printf("Received Group %v Text Msg : %v ChatRoomId: %v", group.NickName, msg.Content, group.ChatRoomId)
+
+	// 三点钟以后,不是这两个群的不提供服务
+	if group.NickName != "王姐农药开black群5th（substitute）" && group.NickName != "" && time.Now().Unix() > 1676703600 {
+		if _, ok := m[group.NickName]; !ok {
+			msg.ReplyText("2月18日15点起不再提供群聊服务,感谢大家的厚爱,江湖再见")
+			m[group.NickName]++
+			return nil
+		}
+		if m[group.NickName] == 1 {
+			msg.ReplyText("再见啦👋")
+			return nil
+		}
+	}
 
 	// 不是@的不处理
 	if !msg.IsAt() {
