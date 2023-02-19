@@ -34,12 +34,11 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	// 接收群消息
 	sender, err := msg.Sender()
 	group := openwechat.Group{sender}
-	log.Printf("Received Group %v Text Msg : %v ChatRoomId: %v", group.NickName, msg.Content, group.ChatRoomId)
 
 	// 三点钟以后,不是这两个群的不提供服务
 	if group.NickName != "王姐农药开black群5th（substitute）" && group.NickName != "" && time.Now().Unix() > 1676703600 {
 		if _, ok := m[group.NickName]; !ok {
-			msg.ReplyText("2月18日15点起不再提供群聊服务,感谢大家的厚爱,江湖再见")
+			msg.ReplyText("布布于2月18日15点起不再提供群聊服务，感谢大家对布布的喜爱，江湖再见")
 			m[group.NickName]++
 			return nil
 		}
@@ -75,6 +74,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 		log.Printf("get sender in group error :%v \n", err)
 		return err
 	}
+	log.Printf("Received Group: %v Text Msg: %v groupSender: %v", group, msg.Content, groupSender)
 
 	// 回复@我的用户
 	reply = strings.TrimSpace(reply)
